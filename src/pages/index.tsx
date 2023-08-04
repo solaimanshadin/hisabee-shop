@@ -14,7 +14,7 @@ type Sort = 'asc' | 'desc'
 interface ProductQuery {
   category: string,
   sort: Sort
-}
+} 
 
 const initialProductQuery = {
   category: 'all categories',
@@ -43,8 +43,8 @@ export default  function Home({categories}: {categories: Category[]}) {
     setProductQuery((query) => ({...query, category}))
   }
 
-  const handleSort = (sort: Sort) => {
-    setProductQuery((query) => ({...query, sort}))
+  const handleSort = (sort:  Sort) => {
+    setProductQuery((query: any) => ({...query, sort}))
 
   }
 
@@ -55,7 +55,7 @@ export default  function Home({categories}: {categories: Category[]}) {
         <HeroSection />
         <Categories activeCategory={productQuery.category} onCategoryChange={handleCategoryChange} categories={categories} />
         <SortingWidget onSort={handleSort} sort={productQuery.sort} />
-        <Products  products={products} />
+        <Products  products={products || []} />
      
     </main>
   )
