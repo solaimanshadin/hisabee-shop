@@ -2,8 +2,9 @@
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-interface Props extends HTMLButtonElement {
+interface Props extends Partial<Omit<HTMLButtonElement, 'children'>> {
     fullWidth?: boolean
+    children: React.ReactNode
     size?: 'sm' | 'md'
     colorScheme?: 'primary' | 'secondary' | 'default'
     variant?: 'outline' | 'solid'
@@ -34,12 +35,12 @@ const Button = ({
     if(linkTo) {
         return (
             <Link href={linkTo}>
-                <button  className={mergedClassName} {...rest}>{children}</button>
+                <button  className={mergedClassName} {...rest as any}>{children}</button>
             </Link>
         )
     }
     return (
-        <button  className={mergedClassName} {...rest}>{children}</button>
+        <button  className={mergedClassName} {...rest as any}>{children}</button>
     )
 }
 
